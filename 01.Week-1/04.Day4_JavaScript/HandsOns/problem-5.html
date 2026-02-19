@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Analysis Tool</title>
+</head>
+<body>
+
+<h2>Number Analysis Tool</h2>
+
+<p id="result"></p>
+<p id="range"></p>
+
+<script>
+
+    let number = 12;
+
+    let sign = (number >= 0)
+
+   
+    let parity;
+    if (number % 2 === 0) {
+        parity = "Even Number";
+    } else {
+        parity = "Odd Number";
+    }
+
+    let output = "";
+    for (let i = 1; i <= number; i++) {
+        output += i + " ";
+    }
+
+   
+// range of the number
+
+    
+
+
+    document.getElementById("result").innerHTML =
+        "Given Number: " + number + "<br>" +
+        "Sign: " + sign + "<br>" +
+        "Parity: " + parity;
+
+    document.getElementById("range").innerHTML =
+        "Numbers from 1 to " + number + ":<br>" + output;
+
+</script>
+
+</body>
+</html>

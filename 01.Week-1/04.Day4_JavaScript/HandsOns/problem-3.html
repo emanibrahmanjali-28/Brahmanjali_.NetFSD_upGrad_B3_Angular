@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discount Calculator</title>
+</head>
+<body>
+
+<h2>Discount Calculator</h2>
+
+<label>Enter Purchase Amount:</label>
+<input type="number" id="amount">
+
+<button onclick="calculateDiscount()">Calculate</button>
+
+<h3>Result:</h3>
+<p id="purchase"></p>
+<p id="discount"></p>
+<p id="final"></p>
+
+<script>
+
+function calculateDiscount() {
+
+    let amount = Number(document.getElementById("amount").value);
+    let discount = 0;
+    let finalAmount = 0;
+
+    if (amount >= 5000) {
+        discount = amount * 0.20;
+    }
+    else if (amount >= 3000) {
+        discount = amount * 0.10;
+    }
+    else {
+        discount = 0;
+    }
+
+    finalAmount = amount - discount;
+
+    document.getElementById("purchase").innerHTML = "Purchase Amount: " + amount;
+    document.getElementById("discount").innerHTML = "Discount Amount: " + discount;
+    document.getElementById("final").innerHTML = "Final Payable Amount: " + finalAmount;
+}
+
+</script>
+
+</body>
+</html>
