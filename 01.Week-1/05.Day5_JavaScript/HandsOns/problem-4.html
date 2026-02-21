@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Student Profile Manager</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+        }
+
+        #profileBox{
+            width: 300px;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            margin-top: 20px;
+        }
+
+        #profileBox h3{
+            margin-top: 0;
+            color: darkblue;
+        }
+
+        .btn{
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Profile Manager</h2>
+
+<button class="btn" onclick="updateStudentProfile(student)">
+    Load Student Profile
+</button>
+
+<br><br>
+
+<input type="number" id="newMarks" placeholder="Enter New Marks">
+<button class="btn" onclick="changeMarks()">
+    Update Marks
+</button>
+
+<div id="profileBox"></div>
+
+<script>
+
+    //  Global Student Object
+    let student = {
+        name: "Anjali",
+        rollNo: 101,
+        marks: 85
+    };
+
+    //  Function to Display Student Profile
+    function updateStudentProfile(studentObj) {
+
+        let box = document.getElementById("profileBox");
+
+        box.innerHTML = `
+            <h3>Student Details</h3>
+            <p><strong>Name:</strong> ${studentObj.name}</p>
+            <p><strong>Roll No:</strong> ${studentObj.rollNo}</p>
+            <p><strong>Marks:</strong> ${studentObj.marks}</p>
+        `;
+    }
+
+    //  Function to Update Marks (Using Parameter)
+    function updateMarks(newMarks) {
+        student.marks = newMarks;   // update global object
+        updateStudentProfile(student);  // refresh display
+    }
+
+    // Helper function to get value from input
+    function changeMarks(){
+        let value = document.getElementById("newMarks").value;
+
+        if(value !== ""){
+            updateMarks(value);
+        }
+    }
+
+</script>
+
+</body>
+</html>

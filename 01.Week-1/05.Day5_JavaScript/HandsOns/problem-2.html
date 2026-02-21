@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Object-Based User Info</title>
+</head>
+<body>
+
+    <h2>User Information</h2>
+
+    <!-- Button -->
+    <button onclick="displayUserInfo(user)">Display User Info</button>
+
+    <hr>
+
+    <!-- Paragraphs to display data -->
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+
+    <script>
+
+        // Creating object
+        const user = {
+            name: "Anjali",
+            age: 22,
+            city: "Ongole"
+        };
+
+        // Function accepting object as parameter
+        function displayUserInfo(userObj) {
+
+            // Accessing properties using dot notation
+            document.getElementById("p1").innerText = "Name: " + userObj.name;
+            document.getElementById("p2").innerText = "Age: " + userObj.age;
+            document.getElementById("p3").innerText = "City: " + userObj.city;
+        }
+
+    </script>
+
+</body>
+</html>
