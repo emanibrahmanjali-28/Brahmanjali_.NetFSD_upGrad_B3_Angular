@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Notes Saver</title>
+<style>
+    
+</style>
+
+</head>
+
+<body>
+
+    <h2>My Notes</h2>
+
+    <textarea id="noteArea" rows="10" cols="40" placeholder="Write your note here..."></textarea>
+    <br><br>
+
+    <!-- Buttons -->
+    <button onclick="saveNote()">Save</button>
+    <button onclick="retrieveNote()">Retrieve</button>
+    <button onclick="clearNote()">Clear</button>
+
+   
+
+    <script>
+        // Load dats automatically when page loads
+        window.onload = function () {
+            let savedNote = localStorage.getItem("dailyNote");
+            if (savedNote !== null) {
+                document.getElementById("noteArea").value = savedNote;
+            }
+        };
+
+        // save, get and clear functions
+        function saveNote() {
+            let noteText = document.getElementById("noteArea").value;
+            localStorage.setItem("dailyNote", noteText);
+            alert("Note Saved Successfully!");
+        }
+
+
+          function retrieveNote() {
+            let storedNote = localStorage.getItem("dailyNote");
+            
+            if (storedNote !== null) {
+                alert("Stored Note:\n\n" + storedNote);
+            } else {
+                alert("No note found in storage!");
+            }
+        }
+        
+        function clearNote() {
+            localStorage.removeItem("dailyNote");
+            document.getElementById("noteArea").value = "";
+            alert("Note Cleared!");
+        }
+
+        
+      
+    </script>
+
+</body>
+</html>
