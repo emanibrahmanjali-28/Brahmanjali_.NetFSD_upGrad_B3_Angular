@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Cart Summary</title>
+</head>
+<body>
+
+<h2>Product Cart Invoice</h2>
+
+<div id="invoice"></div>
+
+<script>
+    // Array of product objects
+    const products = [
+        { name: "Laptop", price: 50000, quantity: 1 },
+        { name: "Refrigirator", price: 50000, quantity: 2 },
+        { name: "Air Conditioner", price: 45000, quantity: 1 }];
+
+    
+    const calculateTotal = (items) => {
+        return items.reduce((total, product) => {
+            return total + (product.price * product.quantity);
+        }, 0);
+    };
+
+    
+    const invoiceLines = products.map(product => {
+        return `${product.name} - ₹${product.price} x ${product.quantity} = ₹${product.price * product.quantity}`;
+    });
+
+    
+    const totalAmount = calculateTotal(products);
+    console.log("----- INVOICE -----");
+    invoiceLines.forEach(line => console.log(line));
+    console.log("-------------------");
+    console.log(`Total Cart Value: ₹${totalAmount}`);
+</script>
+
+</body>
+</html>

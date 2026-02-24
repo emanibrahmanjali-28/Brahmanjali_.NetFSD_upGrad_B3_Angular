@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Filter</title>
+</head>
+<body>
+
+    <h2>Employee Management</h2>
+
+    <!-- Dropdown -->
+    <label>Select Job:</label>
+    <select id="jobSelect">
+        <option value="All">All Employees</option>
+        <option value="Manager">Manager</option>
+        <option value="Salesman">Salesman</option>
+        <option value="Developer">Developer</option>
+    </select>
+
+    <br><br>
+
+  
+    <button onclick="showEmployees()">Show Emps</button>
+
+    <br><br>
+
+    <!-- Table to Display Employees -->
+    <table border="1" id="empTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Job</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+<script>
+
+    //Collection of employees
+    const employees = [
+        { id: 101, name: "Anjali", job: "Manager", salary: 50000 },
+        { id: 102, name: "Ravi", job: "Salesman", salary: 30000 },
+        { id: 103, name: "Kiran", job: "Developer", salary: 20000 },
+        { id: 104, name: "Meena", job: "Manager", salary: 55000 },
+        { id: 105, name: "Arun", job: "Salesman", salary: 32000 }
+    ];
+
+
+    // display employees based on selected job
+    function showEmployees() {
+
+        const selectedJob = document.getElementById("jobSelect").value;
+
+        const tableBody = document.querySelector("#empTable tbody");
+
+        tableBody.innerHTML = "";
+
+        let filteredEmployees;
+
+        if (selectedJob === "All") {
+            filteredEmployees = employees;
+        } else {
+            filteredEmployees = employees.filter(function(emp) {
+                return emp.job === selectedJob;
+            });
+        }
+
+        filteredEmployees.forEach(function(emp) {
+
+            const row = `
+                <tr>
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.job}</td>
+                    <td>${emp.salary}</td>
+                </tr>
+            `;
+
+            tableBody.innerHTML += row;
+        });
+    }
+
+</script>
+
+</body>
+</html>
