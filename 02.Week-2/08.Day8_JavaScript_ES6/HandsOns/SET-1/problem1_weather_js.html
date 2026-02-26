@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Data Fetcher</title>
+</head>
+<body>
+
+<h2>Weather Data Fetcher</h2>
+
+<input type="text" id="cityInput" placeholder="Enter City Name">
+
+<button onclick="getWeatherWithPromises()">Get Weather (Using Promises)</button>
+<button onclick="getWeatherAsync()">Get Weather (Using Async/Await)</button>
+
+<hr>
+
+<div id="result"></div>
+
+<script>
+
+const apiKey = "a42c2cd5acd6398db56344d4fae1eb61"; 
+
+
+// Promise Versions
+
+function getWeatherWithPromises() {
+
+    const city = document.getElementById("cityInput").value.trim();
+
+    if(city === ""){
+        document.getElementById("result").innerHTML =
+        `<p style="color:red;">Please enter a city name.</p>`;
+        return;
+    }
+
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+    fetch(url)
+        .then(response => {
+
+            if(response.status === 401){
+                throw new Error("Invalid API Key!");
+            }
+
+            if(response.status === 404){
+                throw new Error("City not found!");
+            }
+
+            if(!response.ok){
+                throw new Error("Something went wrong!");
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            displayWeather(data);
+        })
+        .catch(error => {
+            document.getElementById("result").innerHTML =
+            `<p style="color:red;">Error: ${error.message}</p>`;
+        });
+}
+
+//  ASYNC and AWAIT VERSION 
+
+const getWeatherAsync = async () => {
+
+    try {
+
+        const city = document.getElementById("cityInput").value.trim();
+
+        if(city === ""){
+            document.getElementById("result").innerHTML =
+            `<p style="color:red;">Please enter a city name.</p>`;
+            return;
+        }
+
+        // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+        const response = await fetch(url);
+
+        if(response.status === 401){
+            throw new Error("Invalid API Key!");
+        }
+
+        if(response.status === 404){
+            throw new Error("City not found!");
+        }
+
+        if(!response.ok){
+            throw new Error("Something went wrong!");
+        }
+
+        const data = await response.json();
+
+        displayWeather(data);
+
+    } catch(error){
+
+        document.getElementById("result").innerHTML =
+        `<p style="color:red;">Error: ${error.message}</p>`;
+    }
+};
+
+const displayWeather = (data) => {
+
+    const report = `
+        <h3>Weather Report</h3>
+        <p><strong>City:</strong> ${data.name}</p>
+        <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
+        <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+        <p><strong>Condition:</strong> ${data.weather[0].description}</p>
+        <p><strong>Wind Speed:</strong> ${data.wind.speed} m/s</p>
+    `;
+
+    document.getElementById("result").innerHTML = report;
+};
+
+</script>
+
+</body>
+</html>
