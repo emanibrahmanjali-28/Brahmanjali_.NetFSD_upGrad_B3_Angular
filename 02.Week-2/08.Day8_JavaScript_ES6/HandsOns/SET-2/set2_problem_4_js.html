@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Product Search App</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+        #productList li {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .no-result {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mini Product Search App</h2>
+
+<input type="text" id="searchInput" placeholder="Search products...">
+
+<ul id="productList"></ul>
+
+<script>
+
+// items
+const state = {
+    products: [
+        "💻Laptop",
+        "📱Mobile Phone",
+        "Mobile Cases",
+        "🎧Headphones",
+        "⌨️Keyboard",
+        "Mouse",
+        "Monitor",
+        "⌚Smart Watch",
+        "📸Camera"
+    ],
+    filteredProducts: []
+};
+
+
+// searching functionality
+function renderProducts(products) {
+    const list = document.getElementById("productList");
+    list.innerHTML = "";
+
+    if (products.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No Results Found";
+        li.classList.add("no-result");
+        list.appendChild(li);
+        return;
+    }
+
+    products.forEach(function(product) {
+        const li = document.createElement("li");
+        li.textContent = product;
+        list.appendChild(li);
+    });
+}
+
+
+function filterProducts(searchText) {
+    state.filteredProducts = state.products.filter(function(product) {
+        return product.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+    renderProducts(state.filteredProducts);
+}
+
+
+//event handlers
+document.getElementById("searchInput").addEventListener("input", function(event) {
+    const searchValue = event.target.value;
+    filterProducts(searchValue);
+});
+
+
+// event delegation
+document.getElementById("productList").addEventListener("click", function(event) {
+    if (event.target.tagName === "LI" && !event.target.classList.contains("no-result")) {
+        alert("You selected: " + event.target.textContent);
+    }
+});
+
+
+//here we call all items
+renderProducts(state.products);
+
+</script>
+
+</body>
+</html>
