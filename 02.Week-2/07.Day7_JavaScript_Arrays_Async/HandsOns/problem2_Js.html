@@ -30,11 +30,15 @@
 
     
     const totalAmount = calculateTotal(products);
-    console.log("----- INVOICE -----");
-    invoiceLines.forEach(line => console.log(line));
-    console.log("-------------------");
-    console.log(`Total Cart Value: ₹${totalAmount}`);
+    const invoiceDiv = document.getElementById("invoice");
+    invoiceDiv.innerHTML = `
+        <h3>----- INVOICE -----</h3>
+        ${invoiceLines.join("")}
+        <hr>
+        <h3>Total Cart Value: ₹${totalAmount}</h3>
+    `;
 </script>
 
 </body>
+
 </html>
