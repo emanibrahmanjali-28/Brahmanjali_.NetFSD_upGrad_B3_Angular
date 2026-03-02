@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+</head>
+<body>
+
+<style>
+
+    body {
+        text-align: center;
+        background-color: rgb(242, 234, 223);
+        font-family: Arial;
+        margin: 30px;
+
+
+    }
+
+    .question{
+        /* text-align: center; */
+        border: 1px solid #ccc;
+        padding: 15px;
+        /* width: 250px; */
+        background-color: rgb(241, 183, 218);
+        border-radius: 10px;
+         margin: 20px auto;
+        
+   
+    }
+
+     .answer{
+        display: none;
+        /* text-align: center; */
+        border: 1px solid #ccc;
+        padding: 15px;
+        /* width: 250px; */
+        background-color: rgb(123, 245, 174);
+        border-radius: 10px;
+         /* margin: 20px auto; */
+        
+   
+    }
+
+
+</style>
+
+
+   <div id="faq-section">
+<br><br>
+        <div class="faq-item">
+            <div class="question">1. What is jQuery Lib?</div>
+            <div class="answer">Ans:- jQuery is a fast, small, and feature-rich JavaScript library that simplifies HTML DOM traversal, event handling, animations, and Ajax for rapid web development.</div>
+        </div>
+
+<br><br>
+        <div class="faq-item">
+            <div class="question">2. What are Toggle Methods in jQuery?</div>
+            <div class="answer"> Ans:- The core jQuery toggle methods are used to switch between two states (like showing/hiding elements or adding/removing a class) and include .toggle(), .slideToggle(), .fadeToggle(), and .toggleClass().</div>
+        </div>
+<br><br>
+        <div class="faq-item">
+            <div class="question">3. What is DOM Traversing?</div>
+            <div class="answer">Ans:- DOM Traversal is the process of navigating up, down, or sideways through the HTML tree structure (nodes) using JavaScript to locate and manipulate specific elements. </div>
+        </div>
+<br><br>
+        <div class="faq-item">
+            <div class="question">4.How do you include jQuery in a web page?</div>
+            <div class="answer">Ans:- You can include the jQuery library via a script tag, either by linking to a local file or using a Content Delivery Network CDN like Google or Microsoft. </div>
+        </div>
+<br><br>
+        <div class="faq-item">
+            <div class="question">5.Is jQuery a replacement for JavaScript?</div>
+            <div class="answer">Ans:- No, jQuery is a library built on top of JavaScript. It uses JavaScript's methods and properties to provide a simpler, more concise syntax and handle cross-browser compatibility issues, but it is not a separate language.</div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                //event handling
+                $(".question").click(function(){
+
+                    $(this).next(".answer").slideToggle(600);
+                    $(this).toggleClass("active");
+
+                    $(".question").not(this).removeClass("active");
+                    $(".question").not(this).next(".answer").slideUp(600);
+                });
+            
+            });
+        </script>
+
+</body>
+</html>
