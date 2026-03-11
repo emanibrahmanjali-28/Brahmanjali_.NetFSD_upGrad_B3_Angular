@@ -6,15 +6,15 @@
         {
             //Console.WriteLine("Hello, World!");
             
-                // Accept student name
+               
                 Console.WriteLine("Enter Name: ");
                 string name = Console.ReadLine();
 
-                // Accept marks
+              
                 Console.WriteLine("Enter Marks: ");
                 int marks = Convert.ToInt32(Console.ReadLine());
 
-                // Check for invalid marks
+                
                 if (marks < 0 || marks > 100)
                 {
                     Console.WriteLine("Invalid marks! Please enter marks between 0 and 100.");
@@ -53,6 +53,7 @@
     
     }
 }
+
 
 
 
