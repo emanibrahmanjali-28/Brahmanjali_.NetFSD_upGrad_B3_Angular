@@ -12,9 +12,13 @@ namespace LinqCodeTemplate
             var products = product.GetProducts();
 
 
-            var result = products
-                         .OrderByDescending(p => p.ProMrp)
-                         .ToList();
+            // var result = products
+            //              .OrderByDescending(p => p.ProMrp)
+            //              .ToList();
+
+            var result = from p in products
+             orderby p.ProMrp descending
+             select p;
 
             foreach (var item in result)
             {
