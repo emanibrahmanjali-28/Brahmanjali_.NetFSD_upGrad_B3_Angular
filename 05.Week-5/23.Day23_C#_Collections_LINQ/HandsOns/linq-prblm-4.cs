@@ -12,9 +12,13 @@ namespace LinqCodeTemplate
             var products = product.GetProducts();
 
 
-            var result = products
-                         .OrderBy(p => p.ProCategory)
-                         .ToList();
+            // var result = products
+            //              .OrderBy(p => p.ProCategory)
+            //              .ToList();
+
+            var result = from p in products
+             orderby p.ProCategory ascending
+             select p;
 
             foreach (var item in result)
             {
