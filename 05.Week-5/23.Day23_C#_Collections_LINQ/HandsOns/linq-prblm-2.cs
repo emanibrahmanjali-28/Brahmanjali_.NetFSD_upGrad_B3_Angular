@@ -9,11 +9,17 @@ namespace LinqCodeTemplate
         {
             Product product = new Product();
 
-            var products = product.GetProducts();
+            // var products = product.GetProducts();
 
-            var result = products
-                         .Where(p => p.ProCategory == "Grain")
-                         .ToList();
+            // var result = products
+            //              .Where(p => p.ProCategory == "Grain")
+            //              .ToList();
+
+
+
+            var result = from p in products
+             where p.ProCategory == "Grain"
+             select p;
 
             foreach (var item in result)
             {
